@@ -38,7 +38,7 @@ const UpdateCoffee = () => {
     }
 
     return (
-        <div className='w-8/12 mx-auto'>
+        <div className='w-full md:w-8/12 mx-auto px-2'>
             <Link to='/'>
                 <div className='flex items-center gap-3 text-2xl'>
                     <BiArrowBack />
@@ -50,9 +50,9 @@ const UpdateCoffee = () => {
                     <h1 className='text-3xl text-center'>Update Existing Coffee Details</h1>
                     <p className='text-lg max-w-lg mx-auto text-center'>It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
                 </div>
-                <div className='px-24'>
+                <div className='px-5 md:px-24'>
                     <form onSubmit={handleUpdateCoffee}>
-                        <div className='flex gap-10 mb-5'>
+                        <div className='flex flex-col md:flex-row gap-10 mb-5'>
                             <div className='flex-1'>
                                 <p className='text-xl'>Name</p>
                                 <input className="w-full p-2" type="text" name="" id="" placeholder='Enter Coffee Name'/>
@@ -62,7 +62,7 @@ const UpdateCoffee = () => {
                                 <input className="w-full p-2" type="text" name="" id="" placeholder='Enter Coffee Chef'/>
                             </div>
                         </div>
-                        <div className='flex gap-10 mb-5'>
+                        <div className='flex flex-col md:flex-row gap-10 mb-5'>
                             <div className='flex-1'>
                                 <p className='text-xl'>Supplier</p>
                                 <input className="w-full p-2" type="text" name="" id="" placeholder='Enter Coffee Supplier'/>
@@ -72,7 +72,7 @@ const UpdateCoffee = () => {
                                 <input className="w-full p-2" type="text" name="" id="" placeholder='Enter Coffee Taste'/>
                             </div>
                         </div>
-                        <div className='flex gap-10 mb-5'>
+                        <div className='flex flex-col md:flex-row gap-10 mb-5'>
                             <div className='flex-1'>
                                 <p className='text-xl'>Category</p>
                                 <input className="w-full p-2" type="text" name="" id="" placeholder='Enter Coffee Category'/>
