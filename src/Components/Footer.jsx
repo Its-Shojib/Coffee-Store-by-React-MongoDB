@@ -3,8 +3,8 @@ import { FaLocationPin } from 'react-icons/fa6';
 import { AiFillTwitterCircle, AiOutlineInstagram, AiFillLinkedin, AiFillPhone, AiTwotoneMail } from 'react-icons/ai';
 const Footer = () => {
     return (
-        <div className='mt-10'>
-            <div className='w-8/12 mx-auto flex'>
+        <div className='mt-10 bg-[#F4F3F0]'>
+            <div className='w-8/12 mx-auto flex px-4'>
                 <div className='space-y-4 flex-1'>
                     <img className='w-16 h-16' src="/public/more/logo1.png" alt="" />
                     <h1 className='text-3xl'>Espresso Emporium</h1>
