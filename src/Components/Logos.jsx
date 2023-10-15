@@ -2,7 +2,7 @@
 const Logos = () => {
     return (
         <div className="bg-[#ECEAE3]">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 py-5 w-8/12 mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 py-5 w-full px-2 md:w-8/12 mx-auto">
                 {/* Card-1 */}
                 <div>
                     <div className="space-y-5">

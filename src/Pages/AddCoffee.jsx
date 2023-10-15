@@ -1,10 +1,10 @@
 import Swal from 'sweetalert2'
 import { BiArrowBack } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const AddCoffee = () => {
 
-
+    let navigate = useNavigate()
     let handleAddCoffee = e => {
         e.preventDefault();
         let form = e.target;
@@ -16,27 +16,28 @@ const AddCoffee = () => {
         let details = form.details.value;
         let photo = form.photo.value;
         // console.log(name,chef,supplier,category,taste,details,photo);
-        let coffee = {name,chef,supplier,category,taste,details,photo}
+        let coffee = { name, chef, supplier, category, taste, details, photo }
 
         // Send data to server
-        fetch('http://localhost:5000/coffee',{
+        fetch('http://localhost:5000/coffee', {
             method: 'POST',
-            headers:{
+            headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(coffee)
         })
-        .then(res=> res.json())
-        .then(data=>{
-            if(data.acknowledged){
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Coffee Added Successfully',
-                    icon: 'Success',
-                    confirmButtonText: 'Cool'
-                  })
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Coffee Added Successfully',
+                        icon: 'Success',
+                        confirmButtonText: 'Cool'
+                    })
+                    navigate('/')
+                }
+            })
     }
     return (
         <div className='w-full md:w-8/12 mx-auto px-4'>

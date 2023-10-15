@@ -1,8 +1,12 @@
 import { BiArrowBack } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+
 const UpdateCoffee = () => {
 
+    let navigate = useNavigate()
+    let coffee = useLoaderData();
+    let {_id,name,chef,supplier,category,taste,details,photo} = coffee ;
     let handleUpdateCoffee = e => {
         e.preventDefault();
         let form = e.target;
@@ -14,25 +18,26 @@ const UpdateCoffee = () => {
         let details = form.details.value;
         let photo = form.photo.value;
         // console.log(name,chef,supplier,category,taste,details,photo);
-        let coffee = {name,chef,supplier,category,taste,details,photo}
+        let updatedCoffee = {name,chef,supplier,category,taste,details,photo}
 
         // Send data to server
-        fetch('http://localhost:5000/coffee',{
-            method: 'POST',
+        fetch(`http://localhost:5000/coffee/${_id}`,{
+            method: 'PUT',
             headers:{
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(coffee)
+            body: JSON.stringify(updatedCoffee)
         })
         .then(res=> res.json())
         .then(data=>{
-            if(data.acknowledged){
+            if(data.modifiedCount>0){
                 Swal.fire({
                     title: 'Success!',
-                    text: 'Coffee Added Successfully',
+                    text: 'Coffee Updated Successfully',
                     icon: 'Success',
                     confirmButtonText: 'Cool'
                   })
+                navigate('/')
             }
         })
     }
@@ -55,36 +60,36 @@ const UpdateCoffee = () => {
                         <div className='flex flex-col md:flex-row gap-10 mb-5'>
                             <div className='flex-1'>
                                 <p className='text-xl'>Name</p>
-                                <input className="w-full p-2" type="text" name="" id="" placeholder='Enter Coffee Name'/>
+                                <input className="w-full p-2" type="text" name="name" defaultValue={name}/>
                             </div>
                             <div className='flex-1'>
                                 <p className='text-xl'>Chef</p>
-                                <input className="w-full p-2" type="text" name="" id="" placeholder='Enter Coffee Chef'/>
+                                <input className="w-full p-2" type="text" name="chef"  defaultValue={chef}/>
                             </div>
                         </div>
                         <div className='flex flex-col md:flex-row gap-10 mb-5'>
                             <div className='flex-1'>
                                 <p className='text-xl'>Supplier</p>
-                                <input className="w-full p-2" type="text" name="" id="" placeholder='Enter Coffee Supplier'/>
+                                <input className="w-full p-2" type="text" name="supplier" defaultValue={supplier}/>
                             </div>
                             <div className='flex-1'>
                                 <p className='text-xl'>Taste</p>
-                                <input className="w-full p-2" type="text" name="" id="" placeholder='Enter Coffee Taste'/>
+                                <input className="w-full p-2" type="text" name="taste" defaultValue={taste} />
                             </div>
                         </div>
                         <div className='flex flex-col md:flex-row gap-10 mb-5'>
                             <div className='flex-1'>
                                 <p className='text-xl'>Category</p>
-                                <input className="w-full p-2" type="text" name="" id="" placeholder='Enter Coffee Category'/>
+                                <input className="w-full p-2" type="text" name="category" defaultValue={category} />
                             </div>
                             <div className='flex-1'>
                                 <p className='text-xl'>Details</p>
-                                <input className="w-full p-2" type="text" name="" id="" placeholder='Enter Coffee Details'/>
+                                <input className="w-full p-2" type="text" name="details" defaultValue={details} />
                             </div>
                         </div>
                         <div className='mb-5'>
                             <p className='text-xl'>Photo</p>
-                            <input className="w-full p-2" type="text" name="" id="" placeholder='Enter Coffee URL'/>
+                            <input className="w-full p-2" type="text" name="photo" defaultValue={photo} />
                         </div>
 
                         <button className='w-full text-center bg-[#D2B48C] py-2 text-2xl mb-5' type="submit">Update Coffee Details</button>
