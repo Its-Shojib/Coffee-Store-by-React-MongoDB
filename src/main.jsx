@@ -8,6 +8,9 @@ import Home from "./Pages/Home";
 import MainLayout from "./Layout/MAinLayout";
 import ErrorPage from "./Pages/ErrorPage";
 import AuthProvider from "./Provider/AuthProvider";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import PrivateRoute from "./Route/PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -23,12 +26,20 @@ const router = createBrowserRouter([
       },
       {
         path: "/addCoffee",
-        element: <AddCoffee></AddCoffee>,
+        element: <PrivateRoute><AddCoffee></AddCoffee></PrivateRoute>,
       },
       {
         path: "/updateCoffee/:id",
-        element: <UpdateCoffee></UpdateCoffee>,
-        loader: ({params}) => fetch(`http://localhost:5000/coffee/${params.id}`)
+        element: <PrivateRoute><UpdateCoffee></UpdateCoffee></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`)
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
       },
     ]
   },

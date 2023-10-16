@@ -1,7 +1,15 @@
 import { BsFacebook } from 'react-icons/bs';
 import { FaLocationPin } from 'react-icons/fa6';
-import { AiFillTwitterCircle, AiOutlineInstagram, AiFillLinkedin, AiFillPhone, AiTwotoneMail } from 'react-icons/ai';
+import { AiFillTwitterCircle, AiOutlineInstagram, AiFillLinkedin, AiFillPhone, AiTwotoneMail,AiOutlineLogout} from 'react-icons/ai';
+import { useContext } from 'react';
+import { AuthContext } from '../Provider/AuthProvider';
 const Footer = () => {
+    let {user,Logout} = useContext(AuthContext);
+    let handleSignOut = () =>{
+        Logout()
+            .then()
+            .catch()
+    }
     return (
         <div className='mt-10 bg-[#F4F3F0]'>
             <div className='w-full md:w-8/12 mx-auto flex px-4'>
@@ -14,6 +22,9 @@ const Footer = () => {
                         <AiFillTwitterCircle />
                         <AiOutlineInstagram />
                         <AiFillLinkedin />
+                        {
+                            user && <AiOutlineLogout className='cursor-pointer' onClick={handleSignOut}/>
+                        }
                     </div>
                     <h1 className='text-3xl'>Get in Touch</h1>
                     <div className='flex gap-3 items-center'>
